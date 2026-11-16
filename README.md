@@ -93,6 +93,7 @@ docs/
   FEATURES.md       # 功能清单
   WORKFLOW.md       # 制谱流程
   CHANGELOG.md      # 变更记录（含每条 bug 的成因与修法）
+  difficulty-calibration.md # 难度模型 vs 25 张参考谱面的比对
   ref-src/          # prpr 关键源码摘录（GPLv3，见 NOTICE）
 test/               # 12 套测试，260+ 断言
 ```
