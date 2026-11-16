@@ -1,0 +1,4 @@
+- insert:
+    - id: phira-chart-ai
+      name: '@local/phira-chart-ai'
+      config: {}

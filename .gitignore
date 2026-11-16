@@ -1,0 +1,7 @@
+node_modules/
+.tmp/
+.panel-state.json
+preview/
+*.pez
+*.bak
+.DS_Store

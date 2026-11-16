@@ -1,0 +1,19 @@
+{
+  "name": "dsh-phira-chart-ai",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Phira/RPE chart authoring toolkit for AI agents: generate, validate (60+ checks), analyze, preview, package .pez",
+  "license": "GPL-3.0-or-later",
+  "keywords": ["dsh-plugin", "phira", "rpe", "rhythm-game", "chart", "ai", "deepseek-harness"],
+  "exports": { ".": "./index.js", "./client": "./client.js" },
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": { "platform": "web", "immediately": true, "inject": [] }
+  },
+  "scripts": {
+    "test": "node test/source_check.mjs && node test/run.mjs && node test/smoke.mjs && node test/schema_check.mjs && node test/effects_check.mjs && node test/quality.mjs && node test/guide_check.mjs && node test/distribution_check.mjs",
+    "test:all": "for f in test/*_check.mjs test/run.mjs test/smoke.mjs test/quality.mjs; do node $f || exit 1; done"
+  },
+  "repository": { "type": "git", "url": "https://github.com/CHANGE_ME/phira-chart-ai.git" },
+  "engines": { "node": ">=20" }
+}
