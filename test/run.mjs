@@ -6,6 +6,10 @@ import { stats, predictDifficulty, playability } from '../lib/analyze.js';
 
 import { chartBase } from './_fixtures.mjs';
 const base = chartBase();
+if (!fs.existsSync(base)) {
+  console.log(`  ⏭ 未找到参考铺面目录（${base}）：设置 PHIRA_CHARTS=/path/to/参考铺面 后再跑；跳过 25 谱面回归`);
+  process.exit(0);
+}
 let n = 0, errs = 0;
 for (const dir of fs.readdirSync(base).sort()) {
   const full = path.join(base, dir);

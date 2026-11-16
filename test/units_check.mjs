@@ -3,6 +3,10 @@ import { normalizeChart, beats, evalSeries } from '../lib/rpe.js';
 import { firstChartDir } from './_fixtures.mjs';
 
 const dir = firstChartDir();
+if (!dir) {
+  console.log('  ⏭ 未找到参考铺面目录（设置 PHIRA_CHARTS 或放到 ../参考铺面），跳过 units_check');
+  process.exit(0);
+}
 let bad = 0;
 for (const f of fs.readdirSync(dir).filter((x) => x.endsWith('.json'))) {
   const raw = JSON.parse(fs.readFileSync(`${dir}/${f}`, 'utf8'));
