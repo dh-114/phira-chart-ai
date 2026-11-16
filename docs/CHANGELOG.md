@@ -1,3 +1,13 @@
+## v1.1 试玩反馈：黄键要成链、不要全局滤镜
+
+| # | 反馈 | 改动 |
+|---|---|---|
+| 1 | 黄键太多、散落 → 手感碎 | 黄键不再由"经过音"随机降级产生；改为 `insertDragChains()` 只以**链**出现：同 x 固定 5 个、楼梯 ≥8 个（`tapDragChain` 默认值同步） |
+| 2 | 楼梯段里夹按键 | 新增 `drag-stairs-mixed`（info）：≥4 连黄键且 x 单调移动时，段内不要有要按下的键 |
+| 3 | 全程滤镜太暗 | 新增 `fx-global-shader`：`global:true` 或任一 shader 覆盖 >50% 曲长 → warn；默认不再建议全程 vignette |
+| 4 | 零时长长条 | `fixShortHolds()`：长条 <0.3 拍直接降级成 Tap；`fixHoldTails()` 移动长条时保留原时长（之前会把它压成 0 时长） |
+| 5 | 类型配比检查误报 | `type-mix` 只在"几乎没有黄键"（<2%）时才 warn，链式低占比是设计 |
+
 # Phira AI 谱面插件（@local/phira-chart-ai）
 
 给 AI 用的 Phira（RPE 格式）谱面工作台：**指南 / 校验 / 难度分析 / 预览渲染 / 编排 / 风格规划 / 面板**。

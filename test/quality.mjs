@@ -187,10 +187,12 @@ section('试玩反馈（判定线布局与手法）');
     applyPattern(c, 'tapDragChain', { startBeat: 8, stepBeat: 0.25, ...params });
     return c.judgeLineList[0].notes.map((n) => `${n.type}:${n.positionX}`);
   };
-  const same = mk({ x: -200, count: 4, type: 1 });
-  ok('tapDragChain 同 x：1 蓝键 + 4 黄键', same.length === 5 && same[0] === '1:-200' && same.slice(1).every((v) => v === '4:-200'), same.join(' '));
-  const stairs = mk({ x: -300, count: 5, shape: 'stairs', x2: 300, type: 3 });
-  ok('tapDragChain 楼梯：红键起头、黄键横向展开', stairs[0] === '3:-300' && stairs[4] === '4:150' && stairs[5] === '4:300', stairs.join(' '));
+  const same = mk({ x: -200, type: 1 });
+  ok('tapDragChain 同 x 默认 5 个黄键', same.length === 6 && same[0] === '1:-200' && same.slice(1).every((v) => v === '4:-200'), same.join(' '));
+  const stairs = mk({ x: -300, shape: 'stairs', x2: 300, type: 3 });
+  ok('tapDragChain 楼梯：至少 8 个黄键、横向展开', stairs.length >= 9 && stairs[0] === '3:-300' && stairs[stairs.length - 1] === '4:300', stairs.join(' '));
+  const stairsFew = mk({ x: -300, shape: 'stairs', x2: 300, count: 4 });
+  ok('楼梯传 count<8 自动抬到 8', stairsFew.length === 9, String(stairsFew.length - 1));
 }
 {
   // 主判定线长段旋转
@@ -266,7 +268,8 @@ section('生成器 · plan 模式');
   const c = normalizeChart(JSON.parse(fs.readFileSync(path.join(dir, 'chart.json'), 'utf8')));
   const real = c.notes.filter((n) => !n.isFake);
   const dragShare = real.filter((n) => n.type === 4).length / real.length;
-  ok('endurance 的黄键占比 > 15%', dragShare > 0.15, (dragShare * 100).toFixed(0) + '%');
+  // 试玩反馈：黄键不再随机散落，只以链出现（同 x 5 个 / 楼梯 ≥8 个）→ 占比低了但结构更清楚
+  ok('endurance 的黄键占比 3–30%', dragShare > 0.03 && dragShare < 0.30, (dragShare * 100).toFixed(0) + '%');
   const v = validate(c, { difficulty: r.difficulty });
   ok('endurance 生成 0E/0W', v.counts.errors === 0 && v.counts.warnings === 0, `${v.counts.errors}E/${v.counts.warnings}W ${v.issues.filter((i) => i.level !== 'info').map((i) => i.code).join(',')}`);
   // 长条尾后 0.5 拍不许接按键
