@@ -64,6 +64,8 @@ dsh plugin install github:dh-114/phira-chart-ai
 
 装完重启 DSH。**注意**：`cordis.patch.yml` 里的 `name` 必须等于 `package.json` 的 `name`，
 否则 DSH 会去解析一个不存在的别名，报 `entry did not activate … failed to import`。
+同理 **`client.js` 里 `window.__ModuleLoader__.load({ id })` 的 `id` 也必须等于包名**，
+写别名会让页面侧找不到组件，启动时直接 `client-plugin-tree-failed`。
 
 面板：侧栏「Phira」标签自动出现，可直接载入谱面目录看时间轴与判定线。
 

@@ -5,7 +5,7 @@
  * - 轮询 /phira/state：AI 用 phira_panel_open 指定谱面时自动切换；谱面文件改动自动刷新
  */
 window.__ModuleLoader__.load({
-  id: '@local/phira-chart-ai',
+  id: 'dsh-phira-chart-ai',
   factory(require) {
     const React = require('react');
     const h = React.createElement;
