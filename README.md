@@ -50,7 +50,7 @@
 
 ```bash
 # 在你的 DSH 工作区里
-git clone https://github.com/<you>/phira-chart-ai.git phira/Plug-in-code
+git clone https://github.com/dh-114/phira-chart-ai.git phira/Plug-in-code
 ```
 
 然后在 DSH 里安装（二选一）：
@@ -59,7 +59,7 @@ git clone https://github.com/<you>/phira-chart-ai.git phira/Plug-in-code
 # A. 从 GitHub 直接装（推荐）
 dsh plugin install github:dh-114/phira-chart-ai
 # B. 本地开发：克隆后按包名 link，注意 profile 里的依赖名必须和 package.json 的 name 一致
-#    "dsh-phira-chart-ai": "link:/path/to/phira-chart-ai"
+#    "dsh-phira-chart-ai": "link:/storage/emulated/0/dsh/phira/Plug-in-code"
 ```
 
 装完重启 DSH。**注意**：`cordis.patch.yml` 里的 `name` 必须等于 `package.json` 的 `name`，
