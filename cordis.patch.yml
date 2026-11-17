@@ -1,4 +1,5 @@
+# 组件名必须等于包名（DSH 按 name 去解析已安装的包；写别名会让 github/npm 安装后 import 失败）
 - insert:
     - id: phira-chart-ai
-      name: '@local/phira-chart-ai'
+      name: 'dsh-phira-chart-ai'
       config: {}
